@@ -7,7 +7,6 @@ namespace CubeSurfer
 	public class ObstacleCube : MonoBehaviour
 	{
 
-
 	}
 
 }

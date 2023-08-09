@@ -25,11 +25,15 @@ namespace CubeSurfer
 
 		public void Build()
 		{
-			cubeParent = new GameObject("Cube");
-			cubeParent.transform.parent = transform;
+			if(cubeParent == null && obstacleParent == null)
+			{
+				cubeParent = new GameObject("Cube");
+				cubeParent.transform.parent = transform;
 
-			obstacleParent = new GameObject("Obstacle");
-			obstacleParent.transform.parent = transform;
+				obstacleParent = new GameObject("Obstacle");
+				obstacleParent.transform.parent = transform;
+			}
+
 
 			int lenght = _spawnPosition + _roadlenght;
 			int i = _spawnPosition;
@@ -38,7 +42,7 @@ namespace CubeSurfer
 			{
 				if(i == spawCube)
 				{
-					Instantiate(cube, new Vector3(Random.Range(-2, 2), (cube.GetComponent<Renderer>().bounds.size.y + 0.1f), i), Quaternion.identity, cubeParent.transform);
+					Instantiate(cube, new Vector3(Random.Range(-2, 3), (cube.GetComponent<Renderer>().bounds.size.y * 0.1f), i), Quaternion.identity, cubeParent.transform);
 					spawCube += Random.Range(_rangeCubeMin, _rangeCubeMax);
 				}
 			}
@@ -46,7 +50,14 @@ namespace CubeSurfer
 		public void Rebuild() 
 		{
 			transform.position = transform.forward * SpawnPosition;
-
+			var objects = cubeParent.GetComponentsInChildren<Cube>();
+			foreach (Cube obj in objects)
+			{
+				if (obj != null)
+				{
+					Destroy(obj);
+				}
+			}
 
 
 

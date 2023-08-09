@@ -7,18 +7,24 @@ namespace CubeSurfer
 {
 	public class Cube : MonoBehaviour
 	{
-		private Rigidbody rb;
-
-		[SerializeField] private float force;
-		private void Start()
-		{
-			rb = GetComponent<Rigidbody>();
-		}
+		private bool isCollection = false;
 		private void OnTriggerEnter(Collider other)
 		{
-			if(other.tag == "Player")
+			if(other.tag == "Obstacle")
 			{
-				this.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.right * force, ForceMode.Force);
+				if(isCollection)
+				{
+					EventManager.EventDestroyCube?.Invoke(this.gameObject);
+				}
+			}
+			if(other.tag == "Cube")
+			{
+				if(!isCollection)
+				{
+					EventManager.EventAddCube?.Invoke(this.gameObject);
+					isCollection = true;
+				}
+				
 			}
 		}
 	}

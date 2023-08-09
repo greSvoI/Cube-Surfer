@@ -111,10 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9625653a5dbe56140be291735e11b41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 8011218210166090798, guid: 0ad97a8b3f64cd34b94192e47a9cb7ba, type: 3}
+  cube: {fileID: 5342454258024473160, guid: 0ad97a8b3f64cd34b94192e47a9cb7ba, type: 3}
   obstacle: {fileID: 0}
   _spawnPosition: 0
-  _rangeCubeMin: 2
-  _rangeCubeMax: 5
+  _rangeCubeMin: 4
+  _rangeCubeMax: 10
   _heightObstacleMax: 0
   _roadlenght: 50
