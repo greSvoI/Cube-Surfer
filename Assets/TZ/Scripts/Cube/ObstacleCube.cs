@@ -10,16 +10,14 @@ namespace CubeSurfer
 		private bool _isActive = false;
 		public bool isActive { get => _isActive; set => _isActive = value; }
 
-		public GameObject _object;
-
-		public void Spawn(float position,bool active)
+		public void Spawn(float position, bool active)
 		{
-			_object.SetActive(active);
-			transform.position = new Vector3(0f,0.5f,position);
+			gameObject.SetActive(active);
+			transform.position = new Vector3(0f, 0.5f, position);
 		}
 		public void SetActive(bool active)
 		{
-			_object.SetActive(active);
+			gameObject.SetActive(active);
 		}
 	}
 
