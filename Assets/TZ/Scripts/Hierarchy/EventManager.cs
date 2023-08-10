@@ -12,8 +12,8 @@ namespace CubeSurfer
 			if(instance == null)
 				instance = this;
 		}
-		public static Action<GameObject> EventAddCube { get; set; }
-		public static Action<GameObject> EventDestroyCube {  get;  set; }
+		public static Action<Cube> EventTakeCube { get; set; }
+		public static Action<Cube> EventLostCube {  get;  set; }
 
 	}
 }

@@ -1,31 +1,51 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace CubeSurfer
 {
-	public class Cube : MonoBehaviour
+	public class Cube : MonoBehaviour, ICube
 	{
-		private bool isCollection = false;
+		private bool _isCollection = false;
+		[SerializeField] private GameObject ui;
+
+		public bool IsCollection { get => _isCollection; set => _isCollection = value; }
+		public void SetActive(bool active)
+		{
+			this.gameObject.SetActive(active);
+		}
+
+		public void Spawn(float position, bool active)
+		{
+			transform.position = new Vector3(Random.Range(-2, 3), 0.5f, position);
+			gameObject.SetActive(active);
+		}
+
 		private void OnTriggerEnter(Collider other)
 		{
-			if(other.tag == "Obstacle")
+			if (other.tag == "Obstacle")
 			{
-				if(isCollection)
+				if (_isCollection)
 				{
-					EventManager.EventDestroyCube?.Invoke(this.gameObject);
+					EventManager.EventLostCube?.Invoke(this);
 				}
 			}
-			if(other.tag == "Cube")
+			if (other.tag == "Cube")
 			{
-				if(!isCollection)
+				if(!_isCollection)
 				{
-					EventManager.EventAddCube?.Invoke(this.gameObject);
-					isCollection = true;
+					EventManager.EventTakeCube?.Invoke(this);
+					_isCollection = true;
+					ui.SetActive(true);
+					StartCoroutine(ShowUI());
 				}
 				
 			}
+		}
+
+		private IEnumerator ShowUI()
+		{
+			yield return new WaitForSeconds(1f);
+			ui.SetActive(false);
 		}
 	}
 }
