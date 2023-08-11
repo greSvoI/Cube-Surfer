@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 namespace CubeSurfer
 {
@@ -13,19 +14,11 @@ namespace CubeSurfer
 		[Header("Prefabs")]
 		[SerializeField] private Road prefabRoad;
 		[SerializeField] private Cube prefabCube;
-		
-		[SerializeField] private GameObject[] obstacle;
-		[SerializeField] private ObstacleCube[] obstacle_1;
-		[SerializeField] private ObstacleCube[] obstacle_2;
-		[SerializeField] private ObstacleCube[] obstacle_3;
-
+		[SerializeField] private ObstacleData obstacleData;
 		[SerializeField] private List<ObstacleCube> listObstacle;
-		[SerializeField] private List<ObstacleCube> listObstacle_1;
-		[SerializeField] private List<ObstacleCube> listObstacle_2;
-		[SerializeField] private List<ObstacleCube> listObstacle_3;
 
-		[SerializeField] private List<Road> listRoad  = new List<Road>();
-		[SerializeField] private List<Cube> listCube = new List<Cube>();
+		[SerializeField] private List<Road> listRoad;
+		[SerializeField] private List<Cube> listCube;
 
 		[Header("Position player and circle")]
 		[SerializeField] private Transform playerTransform;
@@ -61,64 +54,28 @@ namespace CubeSurfer
 				obstacleParent = new GameObject("Obstacle");
 				obstacleParent.transform.parent = transform;
 			}
-			_spawnCubePosition = circleTransform.position.z;
-			
 
 			EventManager.EventTakeCube += OnEventTakeCube => _playerCube++;
 			EventManager.EventLostCube += OnEventLostCube => _playerCube--;
 
-			LoadCubeObstacel();
-
-			_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
-
-			for (int i = 0; i < circleTransform.position.z; i++)
-			{
-				if(i == _spawnCubePosition)
-				{
-					listCube[_indexCubeSpawn].Spawn(_spawnCubePosition, true);
-					_indexCubeSpawn++;
-				}
-			}
-			_spawnCubePosition = circleTransform.position.z;
+			LoadObstacle();
+			LoadScene();
 		}
-		private void LoadCubeObstacel()
+		private void LoadObstacle()
 		{
-			//obstacle = Resources.LoadAll<GameObject>("Obstacle");
-			//obstacle_1 = Resources.LoadAll<ObstacleCube>("1_Rand");
-			//obstacle_2 = Resources.LoadAll<ObstacleCube>("2_Rand");
-			//obstacle_3 = Resources.LoadAll<ObstacleCube>("3_Rand");
+			obstacleData.LoadObstacle();
 
-			foreach (GameObject item in obstacle)
-			{
-				GameObject obstacle = Instantiate(item, obstacleParent.transform);
-				obstacle.SetActive(false);
-				listObstacle.Add(item.GetComponent<ObstacleCube>());
-			
-			}
-			foreach(ObstacleCube item in obstacle_1)
+			foreach (ObstacleCube item in obstacleData.ObstacleCubes)
 			{
 				GameObject obstacle = Instantiate(item.gameObject, obstacleParent.transform);
+				obstacle.transform.position = Vector3.zero;
 				obstacle.SetActive(false);
-				listObstacle_1.Add(item.GetComponent<ObstacleCube>());
+				listObstacle.Add(obstacle.GetComponent<ObstacleCube>());
 			}
-			//foreach (ObstacleCube item in obstacle_1)
-			//{
-			//	GameObject obstacle = Instantiate(item.gameObject, obstacleParent.transform);	
-			//	item.SetActive(false);
-			//	listObstacle_1.Add(item.GetComponent<ObstacleCube>());
-			//}
-			//foreach (ObstacleCube item in obstacle_2)
-			//{
-			//	GameObject obstacle = Instantiate(item.gameObject, obstacleParent.transform);
-			//	item.SetActive(false);
-			//	listObstacle_2.Add(item);
-			//}
-			//foreach (ObstacleCube item in obstacle_3)
-			//{
-			//	GameObject obstacle = Instantiate(item.gameObject, obstacleParent.transform);
-			//	item.SetActive(false);
-			//	listObstacle_3.Add(item);
-			//}
+		}
+		private void LoadScene()
+		{
+			
 			for (int i = 0; i < _startCountRoad; i++)
 			{
 				Road road = Instantiate(prefabRoad, transform.forward * _spawnRoadPosition, transform.rotation, transform);
@@ -132,6 +89,36 @@ namespace CubeSurfer
 				cube.SetActive(false);
 				listCube.Add(cube.GetComponent<Cube>());
 			}
+			for (int i = 0; i < circleTransform.position.z; i++)
+			{
+				if (i == _spawnCubePosition)
+				{
+					_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
+
+					if(_sceneCube == _rangeObstacle)
+					{
+						foreach (ObstacleCube obstacle in listObstacle)
+						{
+							if(obstacle.Step == 1)
+							{
+								obstacle.isActive = true;
+								obstacle.Spawn(_spawnCubePosition, true);
+								break;
+							}
+						}
+						_sceneCube = 0;
+					}
+					else
+					{
+						listCube[_indexCubeSpawn].Spawn(_spawnCubePosition, true);
+					}
+
+					_indexCubeSpawn++;
+					_sceneCube++;
+				}
+			}
+			_sceneCube = 0;
+			_spawnCubePosition = circleTransform.position.z;		
 		}
 
 		private void Update()
@@ -160,6 +147,13 @@ namespace CubeSurfer
 					cube.SetActive(false);
 				}
 			}
+			foreach (ObstacleCube obstacle in listObstacle)
+			{
+				if (playerTransform.transform.position.z > obstacle.transform.position.z)
+				{
+					obstacle.SetActive(false);
+				}
+			}
 
 			listRoad[_currentRoad].Rebuild();
 			_spawnRoadPosition += _roadLenght;
@@ -169,37 +163,31 @@ namespace CubeSurfer
 		{
 			if(_sceneCube == _rangeObstacle)
 			{
-
-				int index = Random.Range(0, listObstacle_1.Count);
 				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
-
-				while (listObstacle_1[index].isActive)
+				if (_playerCube > 2)
 				{
-					index = Random.Range(0, listObstacle_1.Count);
+					foreach (ObstacleCube item in listObstacle)
+					{
+						if(item.Step > 2 && !item.isActive)
+						{
+							item.Spawn(_spawnCubePosition, true);
+							break;
+						}
+					}
 				}
-				listObstacle_1[index].Spawn(_spawnCubePosition, true);
-				_sceneCube = 0;
+				else
+				{
+					foreach (ObstacleCube item in listObstacle)
+					{
+						if (item.Step >= 1 && !item.isActive)
+						{
+							item.Spawn(_spawnCubePosition, true);
+							break;
+						}
+					}
+				}
 
-				//if (_playerCube >= 2)
-				//{
-				//	switch (_playerCube)
-				//	{
-				//		case 2:
-				//			SpawnObstacle(listObstacle_1);
-				//			break;
-				//		case 3:
-				//			SpawnObstacle(listObstacle_1);
-				//			break;
-				//		case 4:
-				//			SpawnObstacle(listObstacle_1);
-				//			break;
-				//	}
-				//}
-				//else
-				//{
-				//	SpawnObstacle(listObstacle);
-				//}
-				//SpawnObstacle(listObstacle);
+				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
 				_sceneCube = 0;
 				return;
 			}
@@ -214,19 +202,6 @@ namespace CubeSurfer
 
 			_indexCubeSpawn++;
 			_sceneCube++;
-		}
-
-		private void SpawnObstacle(List<ObstacleCube>listObstacle)
-		{
-			int index = Random.Range(0, listObstacle.Count);
-			_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
-			Debug.Log(index);
-			while (listObstacle[index].isActive)
-			{
-				index = Random.Range(0, listObstacle.Count);
-			}
-			listObstacle[index].Spawn(_spawnCubePosition, true);
-			_sceneCube = 0;
 		}
 	}
 }

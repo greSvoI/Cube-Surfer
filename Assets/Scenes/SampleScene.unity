@@ -783,6 +783,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4602289967554496621, guid: eb63153a204e09640b919f22ed23b997, type: 3}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: obstacleData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8112ef47957789e428fc08d989ea3929, type: 2}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: _maxCubeScene
       value: 30
       objectReference: {fileID: 0}
@@ -824,7 +828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: obstacle_1.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: listObstacle.Array.size
@@ -833,19 +837,19 @@ PrefabInstance:
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: obstacle_1.Array.data[0]
       value: 
-      objectReference: {fileID: 5356765701784377933, guid: ea30d55387d91504495b9e480d9c2e50, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: obstacle_1.Array.data[1]
       value: 
-      objectReference: {fileID: 4129774084025471993, guid: 6efb270f12166e64e8f960c884c54b83, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: obstacle_1.Array.data[2]
       value: 
-      objectReference: {fileID: 2511536267949053089, guid: 82235ac56d712214fa51136202e028dd, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: obstacle_1.Array.data[3]
       value: 
-      objectReference: {fileID: 3308435445173929868, guid: ff5e4ad3c8cbe844891c1151e01f85c1, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: listObstacle_1.Array.size
       value: 0
@@ -853,7 +857,27 @@ PrefabInstance:
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: listObstacle.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7352390303832101768, guid: a5a06ecaeb265aa4a9e0b0a0f24e6118, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle.Array.data[1]
+      value: 
+      objectReference: {fileID: 6848953940657461980, guid: 8856920e035809f4ab8631f400f81fc0, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle.Array.data[2]
+      value: 
+      objectReference: {fileID: 684343853683587418, guid: 3e0ee13d74dbe5b4484d2764a3c07e58, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle.Array.data[3]
+      value: 
+      objectReference: {fileID: 8901777334932589926, guid: 56d43bd9449f8bb42adfa5c0f99e92a6, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle.Array.data[4]
+      value: 
+      objectReference: {fileID: 1084548242336264265, guid: 882c9f9a31c6c7c4482135b954c2927e, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle.Array.data[5]
+      value: 
+      objectReference: {fileID: 6895012759325160438, guid: f512e3c5692c45e4288abd851eb47f6a, type: 3}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: listObstacle_1.Array.data[0]
       value: 
@@ -1163,6 +1187,14 @@ PrefabInstance:
     - target: {fileID: 1385339669877135369, guid: 3f8004c39ebf1e243978a342902afd88, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385339671589002211, guid: 3f8004c39ebf1e243978a342902afd88, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385339671589002211, guid: 3f8004c39ebf1e243978a342902afd88, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f8004c39ebf1e243978a342902afd88, type: 3}
