@@ -123,12 +123,6 @@ namespace CubeSurfer
 
 		private void Update()
 		{
-			//if (circleTransform.position.z / 10 == 0)
-			//{
-			//	SpawnObstacle(listObstacle_1);
-			//	return;
-			//}
-
 			if (playerTransform.position.z   > _spawnRoadPosition - _roadLenght * (_startCountRoad - 1)) SpawnRoad();
 
 			if (circleTransform.position.z > _spawnCubePosition) Spawn();

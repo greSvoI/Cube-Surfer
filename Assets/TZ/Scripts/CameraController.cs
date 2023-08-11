@@ -1,3 +1,5 @@
+using CubeSurfer;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +7,33 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 	[SerializeField] private Transform playerTransform;
+	[SerializeField] private Transform mouseTransform;
+	[SerializeField] private Transform targetTransform;
 
 	private Vector3 newPosition;
-	private Vector3 offset;
+	private Vector3 targetOffset;
 
-	[SerializeField] private float lerpValue;
+	[SerializeField] private Vector3 offsetMouse;
+	[SerializeField] private Vector3 offsetPlayer;
+	[SerializeField] private float _lerpValue;
 
-
+	private bool _switch = true;
 
 	void Start()
 	{
-		offset = transform.position - playerTransform.position;
+		EventManager.EventGameOver += OnGameOver;
+		targetOffset = offsetPlayer;
 	}
 
+	private void OnGameOver()
+	{
+		//_switch = false;
+		targetOffset = offsetMouse;
+	}
+	private void Update()
+	{
+		targetTransform = playerTransform;
+	}
 	void LateUpdate()
 	{
 		SetCameraFollow();
@@ -25,7 +41,7 @@ public class CameraController : MonoBehaviour
 
 	private void SetCameraFollow()
 	{
-		newPosition = Vector3.Lerp(transform.position, new Vector3(0f, playerTransform.position.y, playerTransform.position.z) + offset, lerpValue * Time.deltaTime);
+		newPosition = Vector3.Lerp(transform.position, new Vector3(0f, targetTransform.position.y, targetTransform.position.z) + targetOffset, _lerpValue * Time.deltaTime);
 		transform.position = newPosition;
 	}
 }
