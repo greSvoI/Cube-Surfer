@@ -66,7 +66,6 @@ namespace CubeSurfer
 
 		private void OnEventLostCube(Cube cube)
 		{
-			
 			cubeCollection.Remove(cube);
 		}
 
@@ -100,7 +99,7 @@ namespace CubeSurfer
 
 				if (transform.position.y < cubeCollection.Count)
 				{
-					Debug.Log("gameOver Update");
+					GameOver();
 				}
 			}
 			if(transform.position.z / 100 == 0)
@@ -112,9 +111,7 @@ namespace CubeSurfer
 		{
 			if(other.tag == "Obstacle")
 			{
-				
 				GameOver();
-				
 			}
 		}
 		private IEnumerator ShowUI(float timeUI)

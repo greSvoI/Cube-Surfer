@@ -55,12 +55,23 @@ namespace CubeSurfer
 				obstacleParent.transform.parent = transform;
 			}
 
-			EventManager.EventTakeCube += OnEventTakeCube => _playerCube++;
-			EventManager.EventLostCube += OnEventLostCube => _playerCube--;
+			EventManager.EventTakeCube += OnEventTakeCube;
+			EventManager.EventLostCube += OnEventLostCube;
 
 			LoadObstacle();
 			LoadScene();
 		}
+
+		private void OnEventLostCube(Cube cube)
+		{
+			_playerCube--;
+		}
+
+		private void OnEventTakeCube(Cube cube)
+		{
+			_playerCube++;
+		}
+
 		private void LoadObstacle()
 		{
 			dataObstacle.LoadObstacle();
@@ -163,13 +174,14 @@ namespace CubeSurfer
 			if(_sceneCube == _rangeObstacle)
 			{
 				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
-				if (_playerCube > 2)
+				if (_playerCube > 3)
 				{
 					foreach (ObstacleCube obstacle in obstacleCollection)
 					{
-						if(obstacle.Step > 2 && !obstacle.isActive)
+						if(obstacle.Step >= 3 && !obstacle.isActive)
 						{
 							obstacle.Spawn(_spawnCubePosition, true);
+						
 							break;
 						}
 						if (obstacle.transform.position.z < playerTransform.transform.position.z)
@@ -184,6 +196,7 @@ namespace CubeSurfer
 					{
 						if (item.Step >= 1 && !item.isActive)
 						{
+					
 							item.Spawn(_spawnCubePosition, true);
 							break;
 						}

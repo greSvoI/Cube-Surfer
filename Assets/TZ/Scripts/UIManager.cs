@@ -46,7 +46,6 @@ namespace CubeSurfer
 		{
 			restartUI.SetActive(false);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-			gameUI.SetActive(true);
 		}
 	}
 }

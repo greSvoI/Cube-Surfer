@@ -6,6 +6,7 @@ namespace CubeSurfer
 	public class Cube : MonoBehaviour, ICube
 	{
 		private bool _isCollection = false;
+		private bool _isFree = true;
 		private Rigidbody _body;
 
 		[SerializeField] private GameObject ui;
@@ -23,6 +24,7 @@ namespace CubeSurfer
 		public void SetActive(bool active)
 		{
 			_isCollection = active;
+			_isFree = !active;
 			this.gameObject.SetActive(active);
 		}
 
@@ -36,18 +38,20 @@ namespace CubeSurfer
 		{
 			if (other.tag == "Obstacle")
 			{
-				if (_isCollection)
+				if (_isCollection && !_isFree)
 				{	
 					EventManager.EventLostCube?.Invoke(this);
 					transform.parent = null;
 					StartCoroutine(FlightCube(_timeFlight));
+					_isFree = true;
 				}
 			}
 			if (other.tag == "Cube")
 			{
-				if(!_isCollection)
+				if(!_isCollection && _isFree)
 				{
 					EventManager.EventTakeCube?.Invoke(this);
+					_isFree = false;
 					_isCollection = true;
 					ui.SetActive(true);
 					StartCoroutine(ShowUI(_timeUI));
