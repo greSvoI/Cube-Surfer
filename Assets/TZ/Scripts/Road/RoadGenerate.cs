@@ -14,11 +14,11 @@ namespace CubeSurfer
 		[Header("Prefabs")]
 		[SerializeField] private Road prefabRoad;
 		[SerializeField] private Cube prefabCube;
-		[SerializeField] private ObstacleData obstacleData;
-		[SerializeField] private List<ObstacleCube> listObstacle;
+		[SerializeField] private ObstacleData dataObstacle;
+		[SerializeField] private List<ObstacleCube> obstacleCollection;
 
-		[SerializeField] private List<Road> listRoad;
-		[SerializeField] private List<Cube> listCube;
+		[SerializeField] private List<Road> roadCollection;
+		[SerializeField] private List<Cube> cubeCollection;
 
 		[Header("Position player and circle")]
 		[SerializeField] private Transform playerTransform;
@@ -63,14 +63,14 @@ namespace CubeSurfer
 		}
 		private void LoadObstacle()
 		{
-			obstacleData.LoadObstacle();
+			dataObstacle.LoadObstacle();
 
-			foreach (ObstacleCube item in obstacleData.ObstacleCubes)
+			foreach (ObstacleCube item in dataObstacle.ObstacleCubes)
 			{
 				GameObject obstacle = Instantiate(item.gameObject, obstacleParent.transform);
 				obstacle.transform.position = Vector3.zero;
 				obstacle.SetActive(false);
-				listObstacle.Add(obstacle.GetComponent<ObstacleCube>());
+				obstacleCollection.Add(obstacle.GetComponent<ObstacleCube>());
 			}
 		}
 		private void LoadScene()
@@ -80,14 +80,14 @@ namespace CubeSurfer
 			{
 				Road road = Instantiate(prefabRoad, transform.forward * _spawnRoadPosition, transform.rotation, transform);
 				road.SpawnPosition = _spawnRoadPosition;
-				listRoad.Add(road);
+				roadCollection.Add(road);
 				_spawnRoadPosition += _roadLenght;
 			}
 			for (int i = 0; i < _maxCubeScene; i++)
 			{
 				GameObject cube = Instantiate(prefabCube.gameObject, cubeParent.transform);
 				cube.SetActive(false);
-				listCube.Add(cube.GetComponent<Cube>());
+				cubeCollection.Add(cube.GetComponent<Cube>());
 			}
 			for (int i = 0; i < circleTransform.position.z; i++)
 			{
@@ -97,7 +97,7 @@ namespace CubeSurfer
 
 					if(_sceneCube == _rangeObstacle)
 					{
-						foreach (ObstacleCube obstacle in listObstacle)
+						foreach (ObstacleCube obstacle in obstacleCollection)
 						{
 							if(obstacle.Step == 1)
 							{
@@ -110,7 +110,7 @@ namespace CubeSurfer
 					}
 					else
 					{
-						listCube[_indexCubeSpawn].Spawn(_spawnCubePosition, true);
+						cubeCollection[_indexCubeSpawn].Spawn(_spawnCubePosition, true);
 					}
 
 					_indexCubeSpawn++;
@@ -138,24 +138,29 @@ namespace CubeSurfer
 			if (_currentRoad == _startCountRoad)
 				_currentRoad = 0;
 
-			listRoad[_currentRoad].SpawnPosition = _spawnRoadPosition;
+			roadCollection[_currentRoad].SpawnPosition = _spawnRoadPosition;
 
-			foreach(Cube cube in cubeParent.GetComponentsInChildren<Cube>())
+			foreach(Cube cube in cubeCollection)
 			{
 				if(playerTransform.transform.position.z > cube.transform.position.z)
 				{
-					cube.SetActive(false);
+					if(!cube.IsCollection)
+					{
+						cube.transform.SetParent(cubeParent.transform);
+						cube.transform.rotation = Quaternion.Euler(0f,Random.Range(0,360),0f);
+						cube.SetActive(false);
+					}
 				}
 			}
-			foreach (ObstacleCube obstacle in listObstacle)
+			foreach (ObstacleCube obstacle in obstacleCollection)
 			{
 				if (playerTransform.transform.position.z > obstacle.transform.position.z)
-				{
+				{ 
 					obstacle.SetActive(false);
 				}
 			}
 
-			listRoad[_currentRoad].Rebuild();
+			roadCollection[_currentRoad].Rebuild();
 			_spawnRoadPosition += _roadLenght;
 			_currentRoad++;
 		}
@@ -166,18 +171,22 @@ namespace CubeSurfer
 				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
 				if (_playerCube > 2)
 				{
-					foreach (ObstacleCube item in listObstacle)
+					foreach (ObstacleCube obstacle in obstacleCollection)
 					{
-						if(item.Step > 2 && !item.isActive)
+						if(obstacle.Step > 2 && !obstacle.isActive)
 						{
-							item.Spawn(_spawnCubePosition, true);
+							obstacle.Spawn(_spawnCubePosition, true);
 							break;
+						}
+						if (obstacle.transform.position.z < playerTransform.transform.position.z)
+						{
+							obstacle.SetActive(false);
 						}
 					}
 				}
 				else
 				{
-					foreach (ObstacleCube item in listObstacle)
+					foreach (ObstacleCube item in obstacleCollection)
 					{
 						if (item.Step >= 1 && !item.isActive)
 						{
@@ -192,16 +201,31 @@ namespace CubeSurfer
 				return;
 			}
 
-			if(_indexCubeSpawn == _maxCubeScene) _indexCubeSpawn = 0;
+			try
+			{
 
-			_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
+				if (_indexCubeSpawn == cubeCollection.Count - 1) _indexCubeSpawn = 0;
 
-			if (listCube[_indexCubeSpawn].IsCollection) _indexCubeSpawn++;
+				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
 
-			listCube[_indexCubeSpawn].Spawn(_spawnCubePosition,true);
+				while (cubeCollection[_indexCubeSpawn].IsCollection)
+				{
+					if (_indexCubeSpawn == cubeCollection.Count - 1)
+						_indexCubeSpawn = 0;
+					_indexCubeSpawn++;
+				}
 
-			_indexCubeSpawn++;
-			_sceneCube++;
+				cubeCollection[_indexCubeSpawn].Spawn(_spawnCubePosition, true);
+
+
+				_indexCubeSpawn++;
+				_sceneCube++;
+			}
+			catch (System.Exception ex)
+			{
+
+				Debug.Log(ex.Message);
+			}
 		}
 	}
 }

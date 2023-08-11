@@ -14,6 +14,8 @@ namespace CubeSurfer
 		}
 		public static Action<Cube> EventTakeCube { get; set; }
 		public static Action<Cube> EventLostCube {  get;  set; }
+		public static Action<Vector2> EventInput { get;set; }
+		public static Action EventGameOver { get; set; }	
 
 	}
 }

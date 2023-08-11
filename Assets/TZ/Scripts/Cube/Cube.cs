@@ -6,11 +6,23 @@ namespace CubeSurfer
 	public class Cube : MonoBehaviour, ICube
 	{
 		private bool _isCollection = false;
+		private Rigidbody _body;
+
 		[SerializeField] private GameObject ui;
+		[SerializeField] private float _timeUI = 1f;
+		[SerializeField] private float _timeFlight = 2f;
+		[SerializeField] private float _force = 10f;
+		[SerializeField] private float _radius = 50f;
 
 		public bool IsCollection { get => _isCollection; set => _isCollection = value; }
+
+		private void Start()
+		{
+			_body = GetComponent<Rigidbody>();
+		}
 		public void SetActive(bool active)
 		{
+			_isCollection = active;
 			this.gameObject.SetActive(active);
 		}
 
@@ -25,8 +37,10 @@ namespace CubeSurfer
 			if (other.tag == "Obstacle")
 			{
 				if (_isCollection)
-				{
+				{	
 					EventManager.EventLostCube?.Invoke(this);
+					transform.parent = null;
+					StartCoroutine(FlightCube(_timeFlight));
 				}
 			}
 			if (other.tag == "Cube")
@@ -36,16 +50,24 @@ namespace CubeSurfer
 					EventManager.EventTakeCube?.Invoke(this);
 					_isCollection = true;
 					ui.SetActive(true);
-					StartCoroutine(ShowUI());
+					StartCoroutine(ShowUI(_timeUI));
 				}
 				
 			}
 		}
-
-		private IEnumerator ShowUI()
+		private IEnumerator ShowUI(float timeUI)
 		{
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(timeUI);
 			ui.SetActive(false);
+		}
+
+		private IEnumerator FlightCube(float timeFly)
+		{
+			Vector3 direction = new Vector3(Random.Range(-1, 2), 0f, Random.Range(-1, 2));
+			_body.AddForce(direction * _force , ForceMode.Impulse);
+			yield return new WaitForSeconds(timeFly);
+
+			SetActive(false);
 		}
 	}
 }

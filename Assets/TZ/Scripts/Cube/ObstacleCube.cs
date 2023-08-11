@@ -15,10 +15,11 @@ namespace CubeSurfer
 		{
 			_isActive = active;
 			gameObject.SetActive(active);
-			transform.position = new Vector3(0f, 0.5f, position);
+			transform.position = new Vector3(0f, 0f, position);
 		}
 		public void SetActive(bool active)
 		{
+			_isActive = active;
 			gameObject.SetActive(active);
 		}
 	}
