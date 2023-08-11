@@ -199,7 +199,7 @@ namespace CubeSurfer
 				//{
 				//	SpawnObstacle(listObstacle);
 				//}
-				SpawnObstacle(listObstacle);
+				//SpawnObstacle(listObstacle);
 				_sceneCube = 0;
 				return;
 			}
@@ -220,7 +220,7 @@ namespace CubeSurfer
 		{
 			int index = Random.Range(0, listObstacle.Count);
 			_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
-
+			Debug.Log(index);
 			while (listObstacle[index].isActive)
 			{
 				index = Random.Range(0, listObstacle.Count);

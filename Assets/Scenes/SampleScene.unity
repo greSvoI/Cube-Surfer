@@ -823,13 +823,53 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: obstacle_1.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: listObstacle.Array.size
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: obstacle_1.Array.data[0]
+      value: 
+      objectReference: {fileID: 5356765701784377933, guid: ea30d55387d91504495b9e480d9c2e50, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: obstacle_1.Array.data[1]
+      value: 
+      objectReference: {fileID: 4129774084025471993, guid: 6efb270f12166e64e8f960c884c54b83, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: obstacle_1.Array.data[2]
+      value: 
+      objectReference: {fileID: 2511536267949053089, guid: 82235ac56d712214fa51136202e028dd, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: obstacle_1.Array.data[3]
+      value: 
+      objectReference: {fileID: 3308435445173929868, guid: ff5e4ad3c8cbe844891c1151e01f85c1, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle_1.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: listObstacle.Array.data[0]
       value: 
-      objectReference: {fileID: 9201878337995939096, guid: d31e755a1a417de40a69b79630dfadde, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle_1.Array.data[0]
+      value: 
+      objectReference: {fileID: 5356765701784377933, guid: ea30d55387d91504495b9e480d9c2e50, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle_1.Array.data[1]
+      value: 
+      objectReference: {fileID: 4129774084025471993, guid: 6efb270f12166e64e8f960c884c54b83, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle_1.Array.data[2]
+      value: 
+      objectReference: {fileID: 2511536267949053089, guid: 82235ac56d712214fa51136202e028dd, type: 3}
+    - target: {fileID: 61235547815293122, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
+      propertyPath: listObstacle_1.Array.data[3]
+      value: 
+      objectReference: {fileID: 3308435445173929868, guid: ff5e4ad3c8cbe844891c1151e01f85c1, type: 3}
     - target: {fileID: 4256062154249711470, guid: a118a5de1e6b8a9498b830b06e16bb85, type: 3}
       propertyPath: m_Name
       value: RoadGenerate
