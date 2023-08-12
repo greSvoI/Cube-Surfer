@@ -9,8 +9,6 @@ namespace CubeSurfer
 		private bool _isFree = true;
 		private Rigidbody _body;
 
-		[SerializeField] private GameObject ui;
-		[SerializeField] private float _timeUI = 1f;
 		[SerializeField] private float _timeFlight = 2f;
 		[SerializeField] private float _force = 10f;
 		[SerializeField] private float _radius = 50f;
@@ -53,16 +51,9 @@ namespace CubeSurfer
 					EventManager.EventTakeCube?.Invoke(this);
 					_isFree = false;
 					_isCollection = true;
-					ui.SetActive(true);
-					StartCoroutine(ShowUI(_timeUI));
 				}
 				
 			}
-		}
-		private IEnumerator ShowUI(float timeUI)
-		{
-			yield return new WaitForSeconds(timeUI);
-			ui.SetActive(false);
 		}
 
 		private IEnumerator FlightCube(float timeFly)

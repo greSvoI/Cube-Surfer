@@ -234,5 +234,10 @@ namespace CubeSurfer
 				Debug.Log(ex.Message);
 			}
 		}
+		private void OnDestroy()
+		{
+			EventManager.EventTakeCube -= OnEventTakeCube;
+			EventManager.EventLostCube -= OnEventLostCube;
+		}
 	}
 }

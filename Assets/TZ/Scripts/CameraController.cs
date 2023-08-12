@@ -44,4 +44,9 @@ public class CameraController : MonoBehaviour
 		newPosition = Vector3.Lerp(transform.position, new Vector3(0f, targetTransform.position.y, targetTransform.position.z) + targetOffset, _lerpValue * Time.deltaTime);
 		transform.position = newPosition;
 	}
+	private void OnDestroy()
+	{
+
+		EventManager.EventGameOver -= OnGameOver;
+	}
 }

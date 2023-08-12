@@ -45,4 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabRoad: {fileID: 8465358835837834395, guid: b42fb838c6270bf459fae85c147bc7fa, type: 3}
-  roadList: []
+  prefabCube: {fileID: 1094280001115688511, guid: 005dc839f8bdfeb46aa551f4913f18f0, type: 3}
+  dataObstacle: {fileID: 11400000, guid: 8112ef47957789e428fc08d989ea3929, type: 2}
+  obstacleCollection: []
+  roadCollection: []
+  cubeCollection: []
+  playerTransform: {fileID: 0}
+  circleTransform: {fileID: 0}
+  _spawnRoadPosition: 0
+  _startCountRoad: 3
+  _indexCubeSpawn: 5
+  _spawnCubePosition: 9
+  _rangeObstacle: 4
+  _distanceCubeMin: 6
+  _distanceCubeMax: 10
+  _maxCubeScene: 50
+  _playerCube: 0
+  _sceneCube: 0

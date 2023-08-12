@@ -133,6 +133,11 @@ namespace CubeSurfer
 			}
 			mouse.GetComponent<Rigidbody>().AddForce(Vector3.forward * _force, ForceMode.Impulse);
 		}
-
+		private void OnDestroy()
+		{
+			EventManager.EventTakeCube -= OnEventTakeCube;
+			EventManager.EventLostCube -= OnEventLostCube;
+			EventManager.EventInput -= OnEventInput;
+		}
 	}
 }
