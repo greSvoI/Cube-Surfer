@@ -100,7 +100,7 @@ namespace CubeSurfer
 				cube.SetActive(false);
 				cubeCollection.Add(cube.GetComponent<Cube>());
 			}
-			for (int i = 0; i < circleTransform.position.z; i++)
+			for (int i  = (int)transform.position.z + 5; i < circleTransform.position.z; i++)
 			{
 				if (i == _spawnCubePosition)
 				{
@@ -159,7 +159,7 @@ namespace CubeSurfer
 			}
 			foreach (ObstacleCube obstacle in obstacleCollection)
 			{
-				if (playerTransform.transform.position.z > obstacle.transform.position.z)
+				if (playerTransform.transform.position.z - _distanceCubeMax > obstacle.transform.position.z)
 				{ 
 					obstacle.SetActive(false);
 				}

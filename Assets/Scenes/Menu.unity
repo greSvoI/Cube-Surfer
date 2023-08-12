@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &1248174147 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6731366891655161818, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+  m_PrefabInstance: {fileID: 1259216333}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1259216333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +141,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2502410528714894187, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+      propertyPath: progressText
+      value: 
+      objectReference: {fileID: 1959409172}
+    - target: {fileID: 2502410528714894187, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 1248174147}
     - target: {fileID: 2502410528714894187, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
       propertyPath: buttonPressRestart
       value: 
@@ -221,6 +240,26 @@ PrefabInstance:
     - target: {fileID: 2502410528714894196, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
       propertyPath: m_Name
       value: UI_Loading
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502410528832174396, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502410529200135598, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378167404895614558, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219332210762834534, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219332210872905390, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
@@ -457,6 +496,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &1959409172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2502410529040343594, guid: 6d0738fdc6681dd4491eddcb21d3241e, type: 3}
+  m_PrefabInstance: {fileID: 1259216333}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2002522263
 GameObject:
   m_ObjectHideFlags: 0

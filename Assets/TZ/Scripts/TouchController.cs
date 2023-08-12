@@ -18,6 +18,7 @@ namespace CubeSurfer
 		public void OnDrag(PointerEventData eventData)
 		{
 			clampedPosition = ClampValuesToMagnitude(eventData.delta);
+			OutputEventPosition(clampedPosition);
 		}
 
 		public void OnPointerDown(PointerEventData eventData)

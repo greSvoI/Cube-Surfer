@@ -12,7 +12,8 @@ namespace CubeSurfer
 
 	    [SerializeField] private GameObject progressBar;
 		[SerializeField] private Image progressBarImage;
-		[SerializeField] private TextMeshProUGUI progressBartext;
+		[SerializeField] private TextMeshProUGUI progressText;
+		[SerializeField] private TextMeshProUGUI highScoreText;
 		[SerializeField] private GameObject buttonPressTap;
 		[SerializeField] private GameObject buttonPressRestart;
 
@@ -21,6 +22,7 @@ namespace CubeSurfer
 		{
 			if (SceneManager.GetActiveScene().name == "Menu") StartCoroutine("AsyncLoadScene", PlayerPrefs.GetString("current_scene"));
 			EventManager.EventGameOver += OnEventGameOver;
+			highScoreText.text = PlayerPrefs.GetInt("_highScore").ToString();
 		}
 
 		private void OnEventGameOver()

@@ -12,7 +12,6 @@ namespace CubeSurfer
 {
 	public class PlayerController : MonoBehaviour
 	{
-		private Rigidbody rigidBody;
 		private List<Cube> cubeCollection = new List<Cube>();
 		private List<Rigidbody> mouseRagdoll = new List<Rigidbody>();
 
@@ -20,7 +19,8 @@ namespace CubeSurfer
 
 		[Header("UI")]
 		[SerializeField] private GameObject takeCubeUI;
-		[SerializeField] private TextMeshProUGUI textCube;
+		[SerializeField] private TextMeshProUGUI scoreUI;
+		[SerializeField] private TextMeshProUGUI highScoreUI;
 		[SerializeField] private float _timeUI;
 
 
@@ -42,10 +42,10 @@ namespace CubeSurfer
 		[Header("Force mouse")]
 		[SerializeField] private float _force = 10f;
 
-		private int _totalCube = 0;
+		private int _score = 0;
+		private int _highScore = 0;
 		private void Awake()
 		{
-			rigidBody = GetComponent<Rigidbody>();
 			foreach(Rigidbody rb in mouse.GetComponentsInChildren<Rigidbody>())
 			{
 				rb.isKinematic = true;
@@ -54,6 +54,14 @@ namespace CubeSurfer
 		}
 		private void Start()
 		{
+			if (PlayerPrefs.GetInt("_highScore") <= _highScore)
+				PlayerPrefs.SetInt("_highScore", _highScore);
+
+			_highScore = PlayerPrefs.GetInt("_highScore");
+
+			highScoreUI.text = $"Highscore : " + _highScore.ToString();
+
+
 			EventManager.EventTakeCube += OnEventTakeCube;
 			EventManager.EventLostCube += OnEventLostCube;
 			EventManager.EventInput += OnEventInput;
@@ -73,8 +81,11 @@ namespace CubeSurfer
 		{
 			takeCubeUI.SetActive(true);
 			StartCoroutine(ShowUI(_timeUI));
-			_totalCube++;
-			textCube.text = _totalCube.ToString();
+
+			_score++;
+			scoreUI.text = $"Score : " + _score.ToString();
+			
+
 			transform.position = new Vector3(transform.position.x,transform.position.y + _heightCube,transform.position.z);
 			cube.transform.position = new Vector3(transform.position.x,_heightCube / 2, transform.position.z);
 			cube.transform.SetParent(transform);
@@ -101,6 +112,7 @@ namespace CubeSurfer
 				{
 					GameOver();
 				}
+				if (transform.position.z / 100 == 0) _speed++;
 			}
 			if(transform.position.z / 100 == 0)
 			{
@@ -121,16 +133,21 @@ namespace CubeSurfer
 		}
 		private void GameOver()
 		{
+			if (_score > _highScore)
+				PlayerPrefs.SetInt("_highScore",_score);
+
+
 			EventManager.EventGameOver?.Invoke();
 			_isLive = false;
 			mouse.transform.parent = null;
-			mouse.transform.position += Vector3.up;
+			
 			mouse.GetComponent<Animator>().enabled = false;
 
 			foreach (Rigidbody rb in mouseRagdoll)
 			{
 				rb.isKinematic = false;
 			}
+			mouse.transform.position += Vector3.up;
 			mouse.GetComponent<Rigidbody>().AddForce(Vector3.forward * _force, ForceMode.Impulse);
 		}
 		private void OnDestroy()
