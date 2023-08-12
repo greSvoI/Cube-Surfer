@@ -615,11 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ea45da93b6eba4199c061240039bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
-  _timeUI: 1
-  _timeFlight: 2
-  _force: 15
-  _radius: 50
+  _force: 10
 --- !u!65 &160504399
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -985,19 +985,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takeCubeUI: {fileID: 5869888180820859828}
-  textCube: {fileID: 0}
+  scoreUI: {fileID: 0}
+  highScoreUI: {fileID: 0}
   _timeUI: 1
   _speed: 0
   _horizontalSpeed: 5
-  _verticalSpeed: 5
   _positionX: 0
   magicCircle: {fileID: 0}
   mouse: {fileID: 2693393938140508314}
+  stackEffect: {fileID: 0}
   _rotationSpeed: 15
   _horizontalLimit: 2
   _heightCube: 1
   _lineTower: 0
   _force: 50
+  audioSourceMusic: {fileID: 0}
+  audioSourceFX: {fileID: 0}
+  takeAudio: {fileID: 0}
+  endAudio: {fileID: 0}
 --- !u!65 &550617692398274762
 BoxCollider:
   m_ObjectHideFlags: 0

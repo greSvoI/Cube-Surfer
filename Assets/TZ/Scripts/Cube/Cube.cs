@@ -7,17 +7,16 @@ namespace CubeSurfer
 	{
 		private bool _isCollection = false;
 		private bool _isFree = true;
-		private Rigidbody _body;
+		private Rigidbody rigidBody;
 
-		[SerializeField] private float _timeFlight = 2f;
+
 		[SerializeField] private float _force = 10f;
-		[SerializeField] private float _radius = 50f;
 
 		public bool IsCollection { get => _isCollection; set => _isCollection = value; }
 
 		private void Start()
 		{
-			_body = GetComponent<Rigidbody>();
+			rigidBody = GetComponent<Rigidbody>();
 		}
 		public void SetActive(bool active)
 		{
@@ -40,8 +39,9 @@ namespace CubeSurfer
 				{	
 					EventManager.EventLostCube?.Invoke(this);
 					transform.parent = null;
-					StartCoroutine(FlightCube(_timeFlight));
 					_isFree = true;
+					Vector3 direction = new Vector3(Random.Range(-1, 2), 0f, -1);
+					rigidBody.AddForce(direction * _force, ForceMode.Impulse);
 				}
 			}
 			if (other.tag == "Cube")
@@ -54,15 +54,6 @@ namespace CubeSurfer
 				}
 				
 			}
-		}
-
-		private IEnumerator FlightCube(float timeFly)
-		{
-			Vector3 direction = new Vector3(Random.Range(-1, 2), 0f, Random.Range(-1, 2));
-			_body.AddForce(direction * _force , ForceMode.Impulse);
-			yield return new WaitForSeconds(timeFly);
-
-			SetActive(false);
 		}
 	}
 }

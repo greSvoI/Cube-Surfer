@@ -17,8 +17,6 @@ public class CameraController : MonoBehaviour
 	[SerializeField] private Vector3 offsetPlayer;
 	[SerializeField] private float _lerpValue;
 
-	private bool _switch = true;
-
 	void Start()
 	{
 		EventManager.EventGameOver += OnGameOver;
@@ -27,7 +25,6 @@ public class CameraController : MonoBehaviour
 
 	private void OnGameOver()
 	{
-		//_switch = false;
 		targetOffset = offsetMouse;
 	}
 	private void Update()

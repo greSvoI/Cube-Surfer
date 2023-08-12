@@ -215,6 +215,15 @@ namespace CubeSurfer
 
 				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
 
+				foreach (Cube cube in cubeCollection)
+				{
+					if(playerTransform.position.z - _distanceCubeMax > cube.transform.position.z)
+						cube.SetActive(false);
+						
+				}
+
+
+
 				while (cubeCollection[_indexCubeSpawn].IsCollection)
 				{
 					if (_indexCubeSpawn == cubeCollection.Count - 1)

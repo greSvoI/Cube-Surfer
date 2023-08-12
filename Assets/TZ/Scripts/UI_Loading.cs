@@ -16,6 +16,8 @@ namespace CubeSurfer
 		[SerializeField] private TextMeshProUGUI highScoreText;
 		[SerializeField] private GameObject buttonPressTap;
 		[SerializeField] private GameObject buttonPressRestart;
+		[SerializeField] private GameObject showGameUI;
+		[SerializeField] private GameObject showMenuUI;
 
 		AsyncOperation asyncSceneLoad;
 		private void Start()
@@ -54,11 +56,25 @@ namespace CubeSurfer
 		}
 		public void PressButtonStart()
 		{
+			Time.timeScale = 1f;
 			SceneManager.LoadScene(1);
+		}
+		public void PressButtonMenu() {
+
+			Time.timeScale = 0f;
+			showGameUI.SetActive(false);
+			showMenuUI.SetActive(true);
+		}
+		public void PressButtonSave()
+		{
+			showGameUI.SetActive(true);
+			showMenuUI.SetActive(false);
+			Time.timeScale = 1f;
 		}
 		private void OnDestroy()
 		{
 			EventManager.EventGameOver -= OnEventGameOver;
 		}
+
 	}
 }
