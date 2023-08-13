@@ -149,6 +149,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &814006966716842864 stripped
 Transform:
@@ -233,6 +234,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &2085988437337800948 stripped
 Transform:
@@ -317,6 +319,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &1645810712640342563 stripped
 Transform:
@@ -401,6 +404,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &3278729444614968271 stripped
 Transform:
@@ -485,6 +489,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &2347059876785987298 stripped
 Transform:
@@ -569,6 +574,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &6627538101519584489 stripped
 Transform:
@@ -653,6 +659,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &5790794481816679884 stripped
 Transform:
@@ -737,6 +744,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &7553509476531501783 stripped
 Transform:
@@ -821,6 +829,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &8099123278573875957 stripped
 Transform:

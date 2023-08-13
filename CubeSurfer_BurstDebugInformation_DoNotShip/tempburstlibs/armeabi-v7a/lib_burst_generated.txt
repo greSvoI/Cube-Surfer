@@ -6,7 +6,7 @@ Library: C:\Unity\TZ_24Play_0.8_0.8\Temp\StagingArea\tempburstlibs\armeabi-v7a\l
 --meta-data-generation=False
 --dump=Function
 --float-precision=Standard
---compilation-defines=UNITY_2021_3_28
+--compilation-defines=UNITY_2021_3_24
 --compilation-defines=UNITY_2021_3
 --compilation-defines=UNITY_2021
 --compilation-defines=UNITY_5_3_OR_NEWER
@@ -48,6 +48,8 @@ Library: C:\Unity\TZ_24Play_0.8_0.8\Temp\StagingArea\tempburstlibs\armeabi-v7a\l
 --compilation-defines=ENABLE_UNITYWEBREQUEST
 --compilation-defines=ENABLE_WWW
 --compilation-defines=ENABLE_CLOUD_SERVICES
+--compilation-defines=ENABLE_CLOUD_SERVICES_COLLAB
+--compilation-defines=ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS
 --compilation-defines=ENABLE_CLOUD_SERVICES_ADS
 --compilation-defines=ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
 --compilation-defines=ENABLE_CLOUD_SERVICES_CRASH_REPORTING
@@ -146,7 +148,7 @@ Library: C:\Unity\TZ_24Play_0.8_0.8\Temp\StagingArea\tempburstlibs\armeabi-v7a\l
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Unity\TZ_24Play_0.8_0.8\Temp\Burst
---key-folder=C:/Program Files/Unity/Hub/Editor/2021.3.28f1/Editor/Data/PlaybackEngines/AndroidPlayer
+--key-folder=C:/Program Files/Unity/Hub/Editor/2021.3.24f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Unity\TZ_24Play_0.8_0.8\Library\Burst
 --output=C:\Unity\TZ_24Play_0.8_0.8\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/

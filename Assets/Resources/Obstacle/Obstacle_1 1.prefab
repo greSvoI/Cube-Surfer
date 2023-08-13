@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3976027705152158315}
   - component: {fileID: 7352390303832101768}
-  - component: {fileID: 5471555420691962500}
   - component: {fileID: 5271310383469505928}
   m_Layer: 0
   m_Name: Obstacle_1 1
@@ -52,19 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Step: 1
---- !u!65 &5471555420691962500
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7536993840793359856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &5271310383469505928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,6 +149,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &2087916475210712119 stripped
 Transform:
@@ -247,6 +234,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &4377799740479849230 stripped
 Transform:
@@ -331,6 +319,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &5788857733615776015 stripped
 Transform:
@@ -415,6 +404,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &7797598593187180313 stripped
 Transform:
@@ -499,6 +489,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1154341190054552099, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
     - {fileID: 3895190905403906125, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
+    - {fileID: 1127257221694189403, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec696e82a3ac7459334d9f1c495a8d, type: 3}
 --- !u!4 &6999912205479371316 stripped
 Transform:

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -37,7 +38,9 @@ namespace CubeSurfer
 		[SerializeField] private GameObject magicCircle;
 		[SerializeField] private GameObject mouse;
 		[SerializeField] private ParticleSystem takeEffect;
+		[SerializeField] private TrailRenderer trailRenderer;
 		private ParticleSystem[] takeEffects;
+
 
 		[Header("Seting cube")]
 		[SerializeField] private float _rotationSpeed = 5f;
@@ -68,7 +71,13 @@ namespace CubeSurfer
 				mouseRagdoll.Add(rb);
 			}
 
+			
+			if(takeEffects == null)
 			takeEffects = takeEffect.GetComponentsInChildren<ParticleSystem>();
+
+			if(trailRenderer == null)
+			trailRenderer = GetComponent<TrailRenderer>();
+
 		}
 		private void Start()
 		{
@@ -121,6 +130,7 @@ namespace CubeSurfer
 			{
 				GameOver();
 			}
+			trailRenderer.transform.position = new Vector3(transform.position.x,0f,transform.position.z);	
 		}
 
 		private void OnEventInput(Vector2 vector)
@@ -130,8 +140,11 @@ namespace CubeSurfer
 
 		private void OnEventLostCube(Cube cube)
 		{
+			
 			cubeCollection.Remove(cube);
+		
 			takeEffect.transform.position = cube.transform.position;
+			
 			takeEffect.Emit(1);
 			foreach (ParticleSystem partical in takeEffects)
 			{
@@ -146,7 +159,6 @@ namespace CubeSurfer
 			//Take cube and start time ui
 			takeCubeUI.SetActive(true);
 			StartCoroutine(ShowUI(_timeUI));
-
 			_score++;
 			scoreUI.text = $"Score : " + _score.ToString();
 			
