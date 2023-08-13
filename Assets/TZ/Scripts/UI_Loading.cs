@@ -19,12 +19,26 @@ namespace CubeSurfer
 		[SerializeField] private GameObject showGameUI;
 		[SerializeField] private GameObject showMenuUI;
 
+		[SerializeField] private Slider musicVolume;
+
+		private bool _vibration = true;
+
 		AsyncOperation asyncSceneLoad;
 		private void Start()
 		{
 			if (SceneManager.GetActiveScene().name == "Menu") StartCoroutine("AsyncLoadScene", PlayerPrefs.GetString("current_scene"));
+
 			EventManager.EventGameOver += OnEventGameOver;
+			EventManager.EventLostCube += OnEventLostCube;
 			highScoreText.text = PlayerPrefs.GetInt("_highScore").ToString();
+		}
+
+		private void OnEventLostCube(Cube cube)
+		{
+			if(_vibration)
+			{
+				Handheld.Vibrate();
+			}
 		}
 
 		private void OnEventGameOver()
@@ -47,8 +61,13 @@ namespace CubeSurfer
 				progressBarImage.fillAmount = progress;
 				yield return null;
 			}
+			progressBarImage.fillAmount = 1f;
 			progressBar.SetActive(false);
 			buttonPressTap.SetActive(true);
+		}
+		public void TriggerVibration()
+		{
+			_vibration = !_vibration;
 		}
 		public void PressButtonRestart()
 		{
@@ -71,9 +90,14 @@ namespace CubeSurfer
 			showMenuUI.SetActive(false);
 			Time.timeScale = 1f;
 		}
+		public void PressButtonQuit()
+		{
+			Application.Quit();
+		}
 		private void OnDestroy()
 		{
 			EventManager.EventGameOver -= OnEventGameOver;
+			EventManager.EventLostCube -= OnEventLostCube;
 		}
 
 	}

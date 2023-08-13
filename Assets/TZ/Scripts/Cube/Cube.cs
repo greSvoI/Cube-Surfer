@@ -40,7 +40,7 @@ namespace CubeSurfer
 					EventManager.EventLostCube?.Invoke(this);
 					transform.parent = null;
 					_isFree = true;
-					Vector3 direction = new Vector3(Random.Range(-1, 2), 0f, -1);
+					Vector3 direction = new Vector3(Random.Range(-1, 1), 0f, -1);
 					rigidBody.AddForce(direction * _force, ForceMode.Impulse);
 				}
 			}

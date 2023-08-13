@@ -25,10 +25,11 @@ namespace CubeSurfer
 		[SerializeField] private float _timeUI;
 
 
-		[Header("Input")]
-		[SerializeField] private float _speed;
-		[SerializeField] private float _timeSpeed= 0;
-		[SerializeField] private float _horizontalSpeed;
+		[Header("Speed")]
+	    [SerializeField]	private float _rangeTimeSpeed= 10;
+	    [SerializeField]	private float _horizontalSpeed = 5;
+     	[SerializeField]	private float _speed = 15;
+		private float _time = 0;
 
 		[SerializeField] private float _positionX;
 		[Header("Component")]
@@ -46,14 +47,7 @@ namespace CubeSurfer
 		[Header("Force mouse")]
 		[SerializeField] private float _force = 10f;
 
-		[Header("Audio")]
-		[SerializeField] private AudioSource audioSourceMusic;
-		[SerializeField] private AudioSource audioSourceFX;
-
-		[SerializeField] private AudioClip takeAudio;
-		[SerializeField] private AudioClip endAudio;
-
-
+		
 
 		private int _score = 0;
 		private int _highScore = 0;
@@ -66,7 +60,6 @@ namespace CubeSurfer
 			}
 
 			takeEffects = takeEffect.GetComponentsInChildren<ParticleSystem>();
-			
 		}
 		private void Start()
 		{
@@ -77,12 +70,12 @@ namespace CubeSurfer
 
 			highScoreUI.text = $"Highscore : " + _highScore.ToString();
 
-
 			EventManager.EventTakeCube += OnEventTakeCube;
 			EventManager.EventLostCube += OnEventLostCube;
 			EventManager.EventInput += OnEventInput;
 
 		}
+
 
 		private void OnEventInput(Vector2 vector)
 		{
@@ -91,8 +84,8 @@ namespace CubeSurfer
 
 		private void OnEventLostCube(Cube cube)
 		{
+
 			cubeCollection.Remove(cube);
-			audioSourceFX.PlayOneShot(endAudio);
 			takeEffect.transform.position = cube.transform.position;
 			takeEffect.Emit(1);
 			foreach (ParticleSystem partical in takeEffects)
@@ -122,17 +115,18 @@ namespace CubeSurfer
 				partical.Emit(1);
 			}
 			cubeCollection.Add(cube);
-			audioSourceFX.PlayOneShot(takeAudio);
+			
 		}
-
 		private void Update()
 		{
-			_timeSpeed += Time.deltaTime;
-			if (_timeSpeed > 15)
+
+			_time += Time.deltaTime;
+			if(_rangeTimeSpeed < _time)
 			{
-				_speed += 5;
-				_timeSpeed += 15;
+				_speed++;
+				_rangeTimeSpeed +=10;
 			}
+
 			if (_isLive)
 			{
 				foreach (var cube in cubeCollection)
@@ -174,10 +168,6 @@ namespace CubeSurfer
 		{
 			if (_score > _highScore)
 				PlayerPrefs.SetInt("_highScore",_score);
-
-			audioSourceMusic.Stop();
-			audioSourceFX.PlayOneShot(endAudio);
-
 
 			EventManager.EventGameOver?.Invoke();
 			_isLive = false;
