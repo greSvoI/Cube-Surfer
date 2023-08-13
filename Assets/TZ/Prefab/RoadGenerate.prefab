@@ -54,8 +54,8 @@ MonoBehaviour:
   circleTransform: {fileID: 0}
   _spawnRoadPosition: 0
   _startCountRoad: 3
-  _indexCubeSpawn: 5
-  _spawnCubePosition: 9
+  _indexCubeSpawn: 4
+  _spawnCubePosition: 8
   _rangeObstacle: 4
   _distanceCubeMin: 6
   _distanceCubeMax: 10

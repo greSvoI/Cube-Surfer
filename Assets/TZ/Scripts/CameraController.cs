@@ -23,6 +23,10 @@ namespace CubeSurfer
 		[SerializeField] private float _duration;
 		[SerializeField] private float _magnitude;
 
+		[Header("Rotate SkyBox")]
+		[SerializeField] private float _rotateSpeedSky = 1f;
+		[SerializeField] private Material _sky;
+
 		void Start()
 		{
 			EventManager.EventLostCube += OnEventLostCube;
@@ -42,7 +46,10 @@ namespace CubeSurfer
 		private void Update()
 		{
 			targetTransform = playerTransform;
+			RenderSettings.skybox.SetFloat("_Rotation", Time.time * 0.5f);
+
 		}
+		
 		void LateUpdate()
 		{
 			SetCameraFollow();

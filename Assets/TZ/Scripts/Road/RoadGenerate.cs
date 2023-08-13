@@ -144,7 +144,7 @@ namespace CubeSurfer
 
 			foreach(Cube cube in cubeCollection)
 			{
-				if(playerTransform.transform.position.z > cube.transform.position.z)
+				if(playerTransform.transform.position.z - _distanceCubeMax > cube.transform.position.z)
 				{
 					if(!cube.IsCollection)
 					{
@@ -166,45 +166,53 @@ namespace CubeSurfer
 			_spawnRoadPosition += _roadLenght;
 			_currentRoad++;
 		}
+		private void SpawnObstacle(int playerCube)
+		{
+			bool isSpawn = true;
+			foreach (ObstacleCube obstacle in obstacleCollection)
+			{
+				if (obstacle.Step >= playerCube && !obstacle.isActive)
+				{
+					obstacle.Spawn(_spawnCubePosition, true);
+					isSpawn = false;
+					break;
+				}
+			}
+
+			if (isSpawn)
+			{
+				foreach (ObstacleCube obstacle in obstacleCollection)
+				{
+					if (!obstacle.isActive)
+					{
+						obstacle.Spawn(_spawnCubePosition, true);
+						break;
+					}
+				}
+			}
+			
+		}
 		private void Spawn()
 		{
 			if(_sceneCube == _rangeObstacle)
 			{
 				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
-				if (_playerCube > 3)
+				if (_playerCube >= 3)
 				{
-					foreach (ObstacleCube obstacle in obstacleCollection)
-					{
-						if(obstacle.Step >= 3 && !obstacle.isActive)
-						{
-							obstacle.Spawn(_spawnCubePosition, true);
-						
-							break;
-						}
-						if (obstacle.transform.position.z < playerTransform.transform.position.z)
-						{
-							obstacle.SetActive(false);
-						}
-					}
+					SpawnObstacle(3);
+				}
+				else if(_playerCube >= 4)
+				{
+					SpawnObstacle(4);
 				}
 				else
 				{
-					foreach (ObstacleCube item in obstacleCollection)
-					{
-						if (item.Step >= 1 && !item.isActive)
-						{
-					
-							item.Spawn(_spawnCubePosition, true);
-							break;
-						}
-					}
+					SpawnObstacle(1);	
 				}
-
 				_spawnCubePosition += Random.Range(_distanceCubeMin, _distanceCubeMax);
 				_sceneCube = 0;
 				return;
 			}
-
 			try
 			{
 
@@ -216,10 +224,7 @@ namespace CubeSurfer
 				{
 					if(playerTransform.position.z - _distanceCubeMax > cube.transform.position.z)
 						cube.SetActive(false);
-						
 				}
-
-
 
 				while (cubeCollection[_indexCubeSpawn].IsCollection)
 				{
@@ -236,7 +241,6 @@ namespace CubeSurfer
 			}
 			catch (System.Exception ex)
 			{
-
 				Debug.Log(ex.Message);
 			}
 		}

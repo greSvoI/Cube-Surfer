@@ -26,6 +26,7 @@ namespace CubeSurfer
 		AsyncOperation asyncSceneLoad;
 		private void Start()
 		{
+
 			if (SceneManager.GetActiveScene().name == "Menu") StartCoroutine("AsyncLoadScene", PlayerPrefs.GetString("current_scene"));
 
 			EventManager.EventGameOver += OnEventGameOver;
@@ -37,6 +38,7 @@ namespace CubeSurfer
 		{
 			if(_vibration)
 			{
+				
 				Handheld.Vibrate();
 			}
 		}
@@ -61,7 +63,7 @@ namespace CubeSurfer
 				progressBarImage.fillAmount = progress;
 				yield return null;
 			}
-			progressBarImage.fillAmount = 1f;
+			progressBarImage.fillAmount = 0.9f;
 			progressBar.SetActive(false);
 			buttonPressTap.SetActive(true);
 		}
