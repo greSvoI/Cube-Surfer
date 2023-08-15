@@ -22,7 +22,6 @@ namespace CubeSurfer
 		[Header("UI")]
 		[SerializeField] private GameObject takeCubeUI;
 		[SerializeField] private TextMeshProUGUI scoreUI;
-		[SerializeField] private TextMeshProUGUI highScoreUI;
 		[SerializeField] private float _timeUI;
 
 
@@ -81,13 +80,6 @@ namespace CubeSurfer
 		}
 		private void Start()
 		{
-			if (PlayerPrefs.GetInt("_highScore") <= _highScore)
-				PlayerPrefs.SetInt("_highScore", _highScore);
-
-			_highScore = PlayerPrefs.GetInt("_highScore");
-
-			highScoreUI.text = $"Highscore : " + _highScore.ToString();
-
 			EventManager.EventTakeCube += OnEventTakeCube;
 			EventManager.EventLostCube += OnEventLostCube;
 			EventManager.EventInput += OnEventInput;
@@ -191,10 +183,7 @@ namespace CubeSurfer
 		}
 		private void GameOver()
 		{
-			if (_score > _highScore)
-				PlayerPrefs.SetInt("_highScore",_score);
-
-			EventManager.EventGameOver?.Invoke();
+			EventManager.EventGameOver?.Invoke(_score);
 			_isLive = false;
 			mouse.transform.parent = null;
 			

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1b3b8f928fbaadf4f9bb104cec4d68e4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Freedom45
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 65ad5f3b8846b18449b891cc8fca8fce, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

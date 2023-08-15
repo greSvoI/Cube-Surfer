@@ -9,12 +9,13 @@ namespace CubeSurfer
 {
 	public class UI_Loading : MonoBehaviour
 	{
-
+		[SerializeField] private GameObject backGround;
 	    [SerializeField] private GameObject progressBar;
-		[SerializeField] private Image progressBarImage;
-		[SerializeField] private TextMeshProUGUI progressText;
-		[SerializeField] private TextMeshProUGUI highScoreText;
-		[SerializeField] private GameObject buttonPressTap;
+		[SerializeField] private Image imageLoading;
+		[SerializeField] private GameObject textLoading;
+		
+		[SerializeField] private TextMeshProUGUI textHighScore;
+		[SerializeField] private GameObject buttonPressPlay;
 		[SerializeField] private GameObject buttonPressRestart;
 		[SerializeField] private GameObject showGameUI;
 		[SerializeField] private GameObject showMenuUI;
@@ -22,50 +23,47 @@ namespace CubeSurfer
 		[SerializeField] private Slider musicVolume;
 
 		private bool _vibration = true;
+		private int _highScore;
 
 		AsyncOperation asyncSceneLoad;
 		private void Start()
 		{
+			if (SceneManager.GetActiveScene().name == "Menu") 
+				StartCoroutine("AsyncLoadScene", PlayerPrefs.GetString("current_scene"));
 
-			if (SceneManager.GetActiveScene().name == "Menu") StartCoroutine("AsyncLoadScene", PlayerPrefs.GetString("current_scene"));
+			if (PlayerPrefs.GetInt("_highScore") <= _highScore)
+				PlayerPrefs.SetInt("_highScore", _highScore);
 
+			_highScore = PlayerPrefs.GetInt("_highScore");
+
+			textHighScore.text = $"Highscore : " + _highScore.ToString();
 			EventManager.EventGameOver += OnEventGameOver;
-			EventManager.EventLostCube += OnEventLostCube;
-			highScoreText.text = PlayerPrefs.GetInt("_highScore").ToString();
 		}
 
-		private void OnEventLostCube(Cube cube)
-		{
-			if(_vibration)
-			{
-				
-				Handheld.Vibrate();
-			}
-		}
 
-		private void OnEventGameOver()
+		private void OnEventGameOver(int score)
 		{
+			if (score > _highScore)
+				PlayerPrefs.SetInt("_highScore", score);
 			buttonPressRestart.SetActive(true);
 		}
 
 		private IEnumerator AsyncLoadScene()
 		{
 			float progress;
-
 			asyncSceneLoad = SceneManager.LoadSceneAsync(1);
-			progressBar.SetActive(true);
-
 			asyncSceneLoad.allowSceneActivation = false;
 			while (asyncSceneLoad.progress < 0.9f)
 			{
 				progress = Mathf.Clamp01(asyncSceneLoad.progress / 0.9f);
 
-				progressBarImage.fillAmount = progress;
+				imageLoading.fillAmount = progress;
 				yield return null;
 			}
-			progressBarImage.fillAmount = 0.9f;
-			progressBar.SetActive(false);
-			buttonPressTap.SetActive(true);
+			imageLoading.fillAmount = 1f;
+
+			textLoading.SetActive(false);
+			buttonPressPlay.SetActive(true);
 		}
 		public void TriggerVibration()
 		{
@@ -86,7 +84,7 @@ namespace CubeSurfer
 			showGameUI.SetActive(false);
 			showMenuUI.SetActive(true);
 		}
-		public void PressButtonSave()
+		public void PressButtonResume()
 		{
 			showGameUI.SetActive(true);
 			showMenuUI.SetActive(false);
@@ -99,7 +97,6 @@ namespace CubeSurfer
 		private void OnDestroy()
 		{
 			EventManager.EventGameOver -= OnEventGameOver;
-			EventManager.EventLostCube -= OnEventLostCube;
 		}
 
 	}

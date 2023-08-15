@@ -39,14 +39,14 @@ namespace CubeSurfer
 			StartCoroutine(Shake(_duration, _magnitude));
 		}
 
-		private void OnGameOver()
+		private void OnGameOver(int score)
 		{
 			targetOffset = offsetMouse;
 		}
 		private void Update()
 		{
 			targetTransform = playerTransform;
-			RenderSettings.skybox.SetFloat("_Rotation", Time.time * 0.5f);
+			RenderSettings.skybox.SetFloat("_Rotation", Time.time * 2f);
 
 		}
 		
