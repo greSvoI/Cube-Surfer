@@ -6182,7 +6182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takeCubeUI: {fileID: 5869888180820859828}
   scoreUI: {fileID: 0}
-  highScoreUI: {fileID: 0}
   _timeUI: 1
   _rangeTimeSpeed: 10
   _rangeTime: 5
@@ -27481,7 +27480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5869888180820859829
 Transform:
   m_ObjectHideFlags: 0
