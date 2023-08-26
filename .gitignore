@@ -47,6 +47,10 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# Unity3D Recording
+*.jpg
+*.mp4
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
